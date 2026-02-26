@@ -1,0 +1,206 @@
+/* ─── Design Tokens ─── */
+:root {
+  --bg:        #f0f4ff;
+  --surface:   #ffffff;
+  --primary:   #5b8ef0;
+  --text:      #2d2d2d;
+  --muted:     #777;
+  --border:    #dde3f0;
+  --radius:    18px;
+  --shadow:    0 4px 24px rgba(91,142,240,.13);
+
+  /* Bubble colors */
+  --q-bg:         #5b8ef0;
+  --q-text:       #ffffff;
+  --a-bg:         #ffffff;
+  --a-text:       #2d2d2d;
+  --a-border:     #dde3f0;
+  --signoff-bg:   #ff7eb3;
+  --signoff-text: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* ─── Hero ─── */
+.hero {
+  background: linear-gradient(135deg, #5b8ef0 0%, #a78bfa 100%);
+  padding: 48px 24px 40px;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 0 36px 36px;
+  box-shadow: 0 6px 32px rgba(91,142,240,.30);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: -60px;
+  width: 240px; height: 240px;
+  background: rgba(255,255,255,.07);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: -40px;
+  width: 280px; height: 280px;
+  background: rgba(255,255,255,.07);
+  border-radius: 50%;
+}
+.hero img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+.hero h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: .85;
+  margin-top: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Chat Layout ─── */
+.chat-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ─── QA Pair wrapper ─── */
+.qa-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ─── Bubbles ─── */
+.bubble {
+  max-width: 78%;
+  padding: 16px 20px;
+  border-radius: 20px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow);
+}
+
+/* Interviewer question — left aligned, clickable */
+.bubble--q {
+  align-self: flex-start;
+  background: var(--q-bg);
+  color: var(--q-text);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  font-weight: 400;
+  border-bottom-left-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.bubble--q:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(91,142,240,.30);
+}
+.bubble--q:active {
+  transform: scale(.97);
+}
+.qa-pair.open .bubble--q {
+  background: #3a6fd8;
+  border-bottom-left-radius: 20px;
+}
+
+/* Tap hint */
+.tap-hint {
+  display: inline-block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(255,255,255,.25);
+  border-radius: 20px;
+  padding: 2px 10px;
+  margin-left: 8px;
+  vertical-align: middle;
+  letter-spacing: .03em;
+  transition: opacity .3s ease;
+}
+.qa-pair.open .tap-hint {
+  opacity: 0;
+}
+
+/* Student answer — right aligned, hidden by default */
+.bubble--a {
+  align-self: flex-end;
+  background: var(--a-bg);
+  color: var(--a-text);
+  border: 2px solid var(--a-border);
+  border-bottom-right-radius: 4px;
+  font-weight: 600;
+
+  /* Hidden state */
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-8px);
+  transition: max-height .35s ease, opacity .3s ease, transform .3s ease, padding .3s ease;
+}
+
+/* Revealed state */
+.qa-pair.open .bubble--a {
+  max-height: 200px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sign-off — centered */
+.bubble--signoff {
+  align-self: center;
+  background: var(--signoff-bg);
+  color: var(--signoff-text);
+  font-family: 'Caveat', cursive;
+  font-size: 1.55rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 20px;
+  max-width: 90%;
+  margin-top: 12px;
+  box-shadow: 0 4px 20px rgba(255,126,179,.30);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 480px) {
+  .hero { padding: 36px 16px 32px; }
+  .bubble { max-width: 88%; font-size: 1rem; }
+  .bubble--q { font-size: 1.25rem; }
+  .bubble--signoff { font-size: 1.35rem; }
+}
