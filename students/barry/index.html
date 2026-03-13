@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barry's Vibes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Caveat:wght@600;700&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <img src="../../images/barry.jpg" alt="Barry" />
+      <h1 id="name">Barry</h1>
+      <h2 id="class-number">class number: 401</h2>
+      <h2 id="seat-number">seat number: #17</h2>
+    </div>
+
+    <div class="chat-wrap">
+
+      <div class="qa-pair">
+        <div class="bubble bubble--q">What's your name? 📛 <span class="tap-hint">tap me!</span></div>
+        <div class="bubble bubble--a">My name is <strong>Barry</strong>.</div>
+      </div>
+
+      <div class="qa-pair">
+        <div class="bubble bubble--q">Cool name! And how old are you? 🎂 <span class="tap-hint">tap me!</span></div>
+        <div class="bubble bubble--a">I am <strong>8</strong> years old.</div>
+      </div>
+
+      <div class="qa-pair">
+        <div class="bubble bubble--q">Oh! So you must be a 4th grader, huh? And what's your favorite thing to eat? 🍔🍜🍙 <span class="tap-hint">tap me!</span></div>
+        <div class="bubble bubble--a">My favorite food is <strong>Noodles</strong>.</div>
+      </div>
+
+      <div class="qa-pair">
+        <div class="bubble bubble--q">Yummy! 😋 And how about your favorite game to play? <span class="tap-hint">tap me!</span></div>
+        <div class="bubble bubble--a">My favorite game is <strong>Pokemon go</strong>.</div>
+      </div>
+
+      <div class="qa-pair">
+        <div class="bubble bubble--q">Sounds fun 😊. And what about your favorite show on TV? <span class="tap-hint">tap me!</span></div>
+        <div class="bubble bubble--a">My favorite show is <strong>Doraemon</strong>.</div>
+      </div>
+
+      <div class="qa-pair">
+        <div class="bubble bubble--q">Nice 😎 What do you want to be when you grow up? <span class="tap-hint">tap me!</span></div>
+        <div class="bubble bubble--a">My dream job is to be a <strong>Policeman</strong>.</div>
+      </div>
+
+      <div class="qa-pair">
+        <div class="bubble bubble--q">Interesting 🤔... So what do you like to study at school? <span class="tap-hint">tap me!</span></div>
+        <div class="bubble bubble--a">My favorite school subject is <strong>Art</strong>.</div>
+      </div>
+
+      <div class="bubble bubble--signoff">
+        Nice to meet you and get to know you!!! 🎉
+      </div>
+
+    </div>
+
+    <script>
+      document.querySelectorAll('.bubble--q').forEach(function(q) {
+        q.addEventListener('click', function() {
+          var pair = q.closest('.qa-pair');
+          pair.classList.toggle('open');
+        });
+      });
+    </script>
+
+  </body>
+</html>
